@@ -12,6 +12,7 @@ var createApplication = mongoose.Schema({
 var newApp = new Application(createApplication);
 
 newApp.save(function(err, doc) {
+	console.log(res.body)
 	if (err) {
 		res.send("can't process request");
 	}

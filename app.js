@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var appController = require('./controllers/index.js');
 
 var app = express();
 
@@ -23,27 +24,8 @@ app.post('/applicant', function(req, res){
 	console.log(req.body)
 	res.redirect('success')
 
-var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/job-app')
+	
 
-var createApplication = mongoose.Schema({
-		name 		: { type : String, required : true },
-		bio  		: { type : String },
-		skills 		: { type : Array, default : [] },
-		experience 	: { type : Number },
-		reason 		: { type : String }
-	});
-
-var newApp = new Application(createApplication);
-
-newApp.save(function(err, doc) {
-	if (err) {
-		res.send("can't process request");
-	}
-	else{
-		res.redirect('/');
-	}
-});
 	// Here is where you need to get the data
 	// from the post body and store it in the database
 });
