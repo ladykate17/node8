@@ -1,7 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var appController = require('./controllers/jobapp.js');
 var mongoose = require('mongoose');
-var appController = require('./controllers/index.js');
+
+mongoose.connect('mongodb://localhost/8441')
 
 var app = express();
 
@@ -15,24 +17,22 @@ app.get('/', function(req, res) {
 });
 
 // displays a list of applicants
-app.get('/applicants', function(req, res){
-	res.render('applicants')
-});
+app.get('/applicants', appController.getApps)
+// app.get('/applicants', function(req, res){
+// 	res.render('applicants')
+// });
 
 // creates an applicant
-app.post('/applicant', function(req, res){
-	console.log(req.body)
-	res.redirect('success')
+app.post('/success', appController.createApp);
 
 	
 
 	// Here is where you need to get the data
 	// from the post body and store it in the database
-});
 
-app.get('/success', function(req, res){
-	res.render('success')
-})
+// app.get('/success', function(req, res){
+// 	res.render('success')
+// })
 
 var server = app.listen(8441, function() {
 	console.log('Express server listening on port ' + server.address().port);
